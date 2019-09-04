@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="favicon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Chatty</title>
+  </head>
+  <body>
+     <div class="chat">
+
+       <div id="userlist" class="chat__sidebar">
+       </div>
+
+
+       <div class="chat__main">
+
+         <div id="messages" class="chat__messages"></div>
+         <div class="compose">
+           <form id="msg-form">
+             <input placeholder="Start typing" type="text" name="message" required autocomplete="off"/>
+             <button type="submit" name="submit">Send</button>
+           </form>
+           <button type="submit" id="location-share">Share Location</button>
+         </div>
+
+       </div>
+
+      </div>
+
+       
+     <script id="server-message-template" type="text/html">
+       <div class="message">
+         <p class="text-danger"> <small><em>{{ message }}</em></small></p>
+       </div>
+     </script>
+       
+     
+     <script id="message-template" type="text/html">
+       <div class="message">
+         <p>
+           <span class="message__name">{{ nickname }}</span>
+           <span class="message__meta"><small class="text-muted">{{ createdAt }}</small></span>
+         </p>
+         <p> {{ message }}</p>
+       </div>
+     </script>
+
+     <script id="location-template" type="text/html">
+       <div>
+         <p class="message">
+           <span class="message__name">{{ nickname }}</span>
+           <span class="message__meta"><small class="text-muted">{{ createdAt }}</small></span>
+         </p>
+         <p class="message"><a href="{{ message }}" alt="My Location" title="My Location" target="_blank">Current Location</a></p>
+       </div>
+     </script>
+
+     <script id="sidebar-template" type="text/html">
+       <h2 class="room-title">{{ room }}</h2>
+       <h3 class="list-title">Members</h3>
+       <ul class="users">
+         {{#users}}
+         <li><a href="">{{ nickname }}</a></li>
+         {{/users}}
+       </ul>
+     </script>
+
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+     <script src="/socket.io/socket.io.js"></script>
+     <script src="/js/chatty.js"></script>
+  </body>
+</html>
